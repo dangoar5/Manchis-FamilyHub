@@ -22,7 +22,7 @@ async function login() {
 
     try {
 
-        const response = await msalInstance.loginPopup({
+        const response = await myMSALObj.loginRedirect({
             scopes: CONFIG.SCOPES
         });
 
