@@ -20,22 +20,14 @@ let currentAccount = null;
 
 async function login() {
 
+  async function login() {
     try {
-
-        const response = await myMSALObj.loginRedirect({
+        await myMSALObj.loginRedirect({
             scopes: CONFIG.SCOPES
         });
-
-        msalInstance.setActiveAccount(response.account);
-
-        return response.account;
-
     } catch (error) {
-
-        console.error("Error login:", error);
-
+        console.error("Error al iniciar sesión:", error);
     }
-
 }
 
 async function iniciarServicios() {
