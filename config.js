@@ -30,3 +30,16 @@ const CONFIG = {
 }
 
 };
+
+// Configuración de MSAL v2 (Sin métodos de inicialización asíncronos)
+const msalConfig = {
+    auth: {
+        clientId: "TU_CLIENT_ID_DE_AZURE", // ⚠️ REEMPLAZA CON TU CLIENT ID REAL
+        authority: "https://microsoftonline.com",
+        redirectUri: window.location.origin + window.location.pathname // Funciona en Localhost y GitHub Pages
+    },
+    cache: {
+        cacheLocation: "localStorage", // Mantiene la sesión viva en celulares
+        storeAuthStateInCookie: true   // Evita bloqueos en Safari (iPhone) e Incógnito
+    }
+};
