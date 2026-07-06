@@ -6,29 +6,34 @@ iniciarServicios();
 document.addEventListener("DOMContentLoaded", async function () {
 
     // 1. Procesar la respuesta tras volver de la pantalla de inicio de sesión de Microsoft
+   document.addEventListener("DOMContentLoaded", async function () {
+
     try {
-        if (typeof myMSALObj !== "undefined") {
-            const response = await myMSALObj.handleRedirectPromise();
-            if (response) {
-                myMSALObj.setActiveAccount(response.account);
-            }
+        // 1. Inicialización obligatoria para MSAL v2+
+        await myMSALObj.initialize();
+
+        // 2. Procesar la respuesta del login al regresar de Microsoft
+        const response = await myMSALObj.handleRedirectPromise();
+        if (response) {
+            myMSALObj.setActiveAccount(response.account);
         }
     } catch (error) {
-        console.error("Error procesando autenticación:", error);
+        console.error("Error durante la inicialización de MSAL:", error);
     }
 
-    // 2. Evento del botón para el clic/tap en móvil
+    // 3. Asignar el evento al botón de inicio de sesión
     const btnLogin = document.getElementById("btnLogin");
     if (btnLogin) {
-        btnLogin.addEventListener("click", function (event) {
-            event.preventDefault(); // Evita recargas inesperadas en móviles
-            login();
+        btnLogin.addEventListener("click", async function (e) {
+            e.preventDefault();
+            await login();
         });
     }
 
-    // 3. Actualizar la vista del usuario y la agenda
+    // 4. Cargar la interfaz y los datos de la agenda
     actualizarUIUsuario();
     cargarAgenda();
+    cargarTareasPlanner();
 });
 
     cargarTareasPlanner();
