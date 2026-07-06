@@ -2,39 +2,53 @@
 iniciarServicios();
 
 
-// LOGIN
-document.addEventListener("DOMContentLoaded", async function () {
 
-    // 1. Procesar la respuesta tras volver de la pantalla de inicio de sesión de Microsoft
-   document.addEventListener("DOMContentLoaded", async function () {
+  // LOGIN Y CARGA INICIAL
+document.addEventListener("DOMContentLoaded", function () {
 
-    try {
-        // 1. Inicialización obligatoria para MSAL v2+
-        await myMSALObj.initialize();
-
-        // 2. Procesar la respuesta del login al regresar de Microsoft
-        const response = await myMSALObj.handleRedirectPromise();
-        if (response) {
-            myMSALObj.setActiveAccount(response.account);
-        }
-    } catch (error) {
-        console.error("Error durante la inicialización de MSAL:", error);
-    }
-
-    // 3. Asignar el evento al botón de inicio de sesión
     const btnLogin = document.getElementById("btnLogin");
+
+    // Asignar evento al botón inmediatamente (Optimizado para PC y Taps de celular)
     if (btnLogin) {
-        btnLogin.addEventListener("click", async function (e) {
+        btnLogin.addEventListener("click", function (e) {
             e.preventDefault();
-            await login();
+            login();
         });
     }
 
-    // 4. Cargar la interfaz y los datos de la agenda
-    actualizarUIUsuario();
-    cargarAgenda();
-    cargarTareasPlanner();
+    // Procesar la respuesta de la redirección de Microsoft al cargar/recargar la página
+    if (typeof myMSALObj !== "undefined") {
+        myMSALObj.handleRedirectPromise()
+            .then(function (response) {
+                if (response) {
+                    // Si viene regresando del login exitoso, activa la cuenta
+                    myMSALObj.setActiveAccount(response.account);
+                }
+                
+                // Ejecutar la carga de la interfaz y datos
+                actualizarUIUsuario();
+                cargarAgenda();
+                cargarTareasPlanner();
+            })
+            .catch(function (error) {
+                console.error("Error en la redirección de MSAL:", error);
+                actualizarUIUsuario();
+            });
+    } else {
+        actualizarUIUsuario();
+    }
 });
+
+// Función global de Login obligatoria por Redirección (Evita bloqueo de popups en móviles)
+async function login() {
+    try {
+        await myMSALObj.loginRedirect({
+            scopes: CONFIG.SCOPES
+        });
+    } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+    }
+}
 
     cargarTareasPlanner();
     
