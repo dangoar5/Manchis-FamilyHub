@@ -2,10 +2,10 @@ const msalConfig = {
     auth: {
         clientId: "5f1530d2-f339-47e1-b957-81ab6576ce38",
         authority: "https://login.microsoftonline.com/599efb1b-cfe8-4b1d-ba53-683e2b9a2864",
-        redirectUri: "http://localhost:5500"
+        redirectUri: "https://dangoar5.github.io/Manchis-FamilyHub/"
     },
     cache: {
-        cacheLocation: "https://dangoar5.github.io/Manchis-FamilyHub/",
+        cacheLocation: "localStorage",
         storeAuthStateInCookie: true
     }
 };
