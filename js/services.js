@@ -69,6 +69,61 @@ function obtenerUsuario() {
 
 }
 
+let calendarioFamilyHub = null;
+
+async function obtenerIdCalendarioFamilyHub() {
+
+    if (calendarioFamilyHub)
+        return calendarioFamilyHub;
+
+    const cuenta = msalInstance.getActiveAccount();
+
+    if (!cuenta)
+        return null;
+
+    const token = await msalInstance.acquireTokenSilent({
+
+        scopes: CONFIG.SCOPES,
+        account: cuenta
+
+    });
+
+    const response = await fetch(
+
+        "https://graph.microsoft.com/v1.0/me/calendars",
+
+        {
+
+            headers: {
+
+                Authorization: `Bearer ${token.accessToken}`
+
+            }
+
+        }
+
+    );
+
+    if (!response.ok)
+        return null;
+
+    const data = await response.json();
+
+    const calendario = data.value.find(function (c) {
+
+        return c.name === "Family Hub";
+
+    });
+
+    if (!calendario)
+        return null;
+
+    calendarioFamilyHub = calendario.id;
+
+    return calendario.id;
+
+}
+
 //--------------------------------------------------
 // CALENDARIOS
 //--------------------------------------------------
@@ -76,6 +131,11 @@ function obtenerUsuario() {
 async function obtenerCalendarios() {
 
     const cuenta = msalInstance.getActiveAccount();
+   
+    const calendarioId = await obtenerIdCalendarioFamilyHub();
+
+if (!calendarioId)
+    return [];
 
     if (!cuenta) return [];
 
@@ -116,11 +176,11 @@ async function obtenerEventos() {
     const fin = new Date(inicio);
     fin.setDate(fin.getDate() + 2);
 
-    const url =
-        `https://graph.microsoft.com/v1.0/groups/${CONFIG.GRUPO_FAMILY_HUB}/calendar/calendarView` +
-        `?startDateTime=${encodeURIComponent(inicio.toISOString())}` +
-        `&endDateTime=${encodeURIComponent(fin.toISOString())}` +
-        `&$orderby=start/dateTime`;
+   const url =
+`https://graph.microsoft.com/v1.0/me/calendars/${calendarioId}/calendarView` +
+`?startDateTime=${encodeURIComponent(inicio.toISOString())}` +
+`&endDateTime=${encodeURIComponent(fin.toISOString())}` +
+`&$orderby=start/dateTime`;
 
     const response = await fetch(url, {
         headers: {
