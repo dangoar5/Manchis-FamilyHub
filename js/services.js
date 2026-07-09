@@ -212,15 +212,6 @@ async function obtenerEventos() {
     return data.value || [];
 
 }
-
-    const data = await response.json();
-
-    return data.value || [];
-
-    
-
-}
-
 async function crearEventoGrupo(asunto, fechaHora) {
 
     const cuenta = msalInstance.getActiveAccount();
