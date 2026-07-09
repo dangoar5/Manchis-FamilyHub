@@ -165,6 +165,16 @@ async function obtenerEventos() {
 
     if (!cuenta) return [];
 
+    const calendarioId = await obtenerIdCalendarioFamilyHub();
+
+    if (!calendarioId) {
+
+        console.error("No se encontró el calendario Family Hub.");
+
+        return [];
+
+    }
+
     const token = await msalInstance.acquireTokenSilent({
         scopes: CONFIG.SCOPES,
         account: cuenta
@@ -176,11 +186,11 @@ async function obtenerEventos() {
     const fin = new Date(inicio);
     fin.setDate(fin.getDate() + 2);
 
-   const url =
-`https://graph.microsoft.com/v1.0/me/calendars/${calendarioId}/calendarView` +
-`?startDateTime=${encodeURIComponent(inicio.toISOString())}` +
-`&endDateTime=${encodeURIComponent(fin.toISOString())}` +
-`&$orderby=start/dateTime`;
+    const url =
+        `https://graph.microsoft.com/v1.0/me/calendars/${calendarioId}/calendarView` +
+        `?startDateTime=${encodeURIComponent(inicio.toISOString())}` +
+        `&endDateTime=${encodeURIComponent(fin.toISOString())}` +
+        `&$orderby=start/dateTime`;
 
     const response = await fetch(url, {
         headers: {
@@ -192,9 +202,16 @@ async function obtenerEventos() {
     if (!response.ok) {
 
         console.error(await response.text());
+
         return [];
 
     }
+
+    const data = await response.json();
+
+    return data.value || [];
+
+}
 
     const data = await response.json();
 
