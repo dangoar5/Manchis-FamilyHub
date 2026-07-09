@@ -71,52 +71,31 @@ function obtenerUsuario() {
 
 let calendarioFamilyHub = null;
 
+let calendarioFamilyHub = null;
+
 async function obtenerIdCalendarioFamilyHub() {
 
     if (calendarioFamilyHub)
         return calendarioFamilyHub;
 
-    const cuenta = msalInstance.getActiveAccount();
+    const calendarios = await obtenerCalendarios();
 
-    if (!cuenta)
+    if (!calendarios.length)
         return null;
 
-    const token = await msalInstance.acquireTokenSilent({
+    const calendario = calendarios.find(function (c) {
 
-        scopes: CONFIG.SCOPES,
-        account: cuenta
+        return c.name.trim().toUpperCase() === "FAMILY HUB";
 
     });
 
-    const response = await fetch(
+    if (!calendario) {
 
-        "https://graph.microsoft.com/v1.0/me/calendars",
+        console.error("No se encontró el calendario Family Hub.");
 
-        {
-
-            headers: {
-
-                Authorization: `Bearer ${token.accessToken}`
-
-            }
-
-        }
-
-    );
-
-    if (!response.ok)
         return null;
 
-    const data = await response.json();
-
-    const calendario = data.value.find(function (c) {
-
-        return c.name === "Family Hub";
-
-    });
-
-    if (!calendario)
-        return null;
+    }
 
     calendarioFamilyHub = calendario.id;
 
@@ -131,11 +110,6 @@ async function obtenerIdCalendarioFamilyHub() {
 async function obtenerCalendarios() {
 
     const cuenta = msalInstance.getActiveAccount();
-   
-    const calendarioId = await obtenerIdCalendarioFamilyHub();
-
-if (!calendarioId)
-    return [];
 
     if (!cuenta) return [];
 
@@ -152,6 +126,14 @@ if (!calendarioId)
             }
         }
     );
+
+    if (!response.ok) {
+
+        console.error(await response.text());
+
+        return [];
+
+    }
 
     const data = await response.json();
 
