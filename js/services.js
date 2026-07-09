@@ -5,7 +5,7 @@ const msalConfig = {
         redirectUri: "http://localhost:5500"
     },
     cache: {
-        cacheLocation: "localStorage",
+        cacheLocation: "https://dangoar5.github.io/Manchis-FamilyHub/",
         storeAuthStateInCookie: true
     }
 };
