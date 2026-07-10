@@ -11,7 +11,7 @@ function actualizarHora() {
     const segundos = String(ahora.getSeconds()).padStart(0, "0");
 
     document.getElementById("hora").textContent =
-        `${horas}:${minutos}:${segundos}`;
+        `${horas}:${minutos}`;
 
 }
 
