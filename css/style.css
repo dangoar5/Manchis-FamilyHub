@@ -1,0 +1,1733 @@
+/* =====================================================
+   FAMILY HUB 3.0
+===================================================== */
+
+:root{
+
+    --bg:#F5F5F7;
+    --card:#FFFFFF;
+
+    --text:#1D1D1F;
+    --text2:#6E6E73;
+
+    --border:rgba(0,0,0,.06);
+
+    --accent:#2F6BFF;
+    --green:#34C759;
+    --orange:#FF9F0A;
+    --red:#FF453A;
+
+    --shadow:
+        0 2px 6px rgba(0,0,0,.04),
+        0 12px 30px rgba(0,0,0,.06);
+
+    --radius:22px;
+
+    --transition:.18s ease;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    -webkit-font-smoothing:antialiased;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    min-height:100vh;
+
+    padding:24px;
+
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:22px;
+
+    margin-bottom:24px;
+
+    padding:20px 28px;
+
+    background:white;
+
+    border-radius:var(--radius);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+}
+
+/*=====================================================
+LOGO
+=====================================================*/
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    letter-spacing:-.5px;
+
+    white-space:nowrap;
+
+}
+
+/*=====================================================
+FECHA
+=====================================================*/
+
+.fecha{
+
+    font-size:18px;
+
+    color:var(--text2);
+
+    font-weight:500;
+
+}
+
+/*=====================================================
+HORA
+=====================================================*/
+
+.hora{
+
+    font-size:30px;
+
+    font-weight:600;
+
+    letter-spacing:-1px;
+
+    color:var(--text);
+
+}
+
+/*=====================================================
+USUARIO
+=====================================================*/
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.usuario-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:2px;
+
+    margin-right:6px;
+
+}
+
+#usuarioNombre{
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+#estadoSync{
+
+    font-size:12px;
+
+    color:var(--text2);
+
+}
+
+/*=====================================================
+BOTONES HEADER
+=====================================================*/
+
+.btn-header,
+.btn-card{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:white;
+
+    color:var(--text2);
+
+    cursor:pointer;
+
+    transition:all var(--transition);
+
+    box-shadow:
+
+        0 1px 3px rgba(0,0,0,.05);
+
+    font-size:17px;
+
+}
+
+.btn-header:hover,
+.btn-card:hover{
+
+    transform:translateY(-2px);
+
+    background:#F8F8FA;
+
+    color:var(--accent);
+
+}
+
+.btn-header:active,
+.btn-card:active{
+
+    transform:scale(.96);
+
+}
+
+#btnLogin{
+
+    height:42px;
+
+    padding:0 18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--accent);
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .18s;
+
+}
+
+#btnLogin:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 8px 20px rgba(47,107,255,.28);
+
+}
+
+/* =====================================================
+GRID
+===================================================== */
+
+main{
+
+    display:grid;
+
+    grid-template-columns:2fr 2fr 1fr;
+
+    grid-template-rows:270px 270px;
+
+    gap:22px;
+
+}
+
+/*=====================================================
+TARJETAS
+=====================================================*/
+
+section{
+
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:22px;
+
+    overflow:hidden;
+
+    transition:all .18s ease;
+
+}
+
+section:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 6px 16px rgba(0,0,0,.05),
+
+        0 18px 40px rgba(0,0,0,.08);
+
+}
+
+/*=====================================================
+POSICIÓN TARJETAS
+=====================================================*/
+
+.agenda{
+
+    grid-column:2;
+    grid-row:1;
+
+}
+
+.tareas{
+
+    grid-column:1;
+    grid-row:1;
+
+}
+
+.alertas{
+
+    grid-column:3;
+    grid-row:1;
+
+}
+
+.mercado{
+
+    grid-column:1;
+    grid-row:2;
+
+}
+
+.notas{
+
+    grid-column:2 / 4;
+    grid-row:2;
+
+}
+
+/*=====================================================
+CABECERA TARJETAS
+=====================================================*/
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+    padding-bottom:14px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.card-header h2{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:21px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    letter-spacing:-.3px;
+
+}
+
+/*=====================================================
+ICONOS TÍTULOS
+=====================================================*/
+
+.card-header i{
+
+    width:24px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+.agenda .card-header i{
+
+    color:var(--accent);
+
+}
+
+.tareas .card-header i{
+
+    color:var(--orange);
+
+}
+
+.mercado .card-header i{
+
+    color:var(--green);
+
+}
+
+.alertas .card-header i{
+
+    color:var(--red);
+
+}
+
+.notas .card-header i{
+
+    color:#8E8E93;
+
+}
+
+/*=====================================================
+CUERPO TARJETAS
+=====================================================*/
+
+.card-body{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding-right:2px;
+
+}
+
+/*=====================================================
+BOTONES "+"
+=====================================================*/
+
+.btn-card{
+
+    background:transparent;
+
+color:inherit;
+
+    font-size:20px;
+
+    font-weight:500;
+
+}
+
+.btn-card:hover{
+
+   background:#F3F4F6;
+
+color:inherit;
+
+}
+
+/*=====================================================
+SEPARADORES
+=====================================================*/
+
+hr{
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+    margin:14px 0;
+
+}
+/* =====================================================
+LISTAS (AGENDA - TAREAS - MERCADO)
+===================================================== */
+
+.evento{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px 2px;
+
+    border-bottom:1px solid rgba(0,0,0,.05);
+
+    transition:background .15s ease;
+
+}
+
+.evento:last-child{
+
+    border-bottom:none;
+
+}
+
+.evento:hover{
+
+    background:rgba(47,107,255,.035);
+
+    border-radius:12px;
+
+}
+
+/*=====================================================
+HORA EVENTO
+=====================================================*/
+
+.hora-evento{
+
+    width:70px;
+
+    flex-shrink:0;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:var(--accent);
+
+}
+
+/*=====================================================
+TÍTULO EVENTO
+=====================================================*/
+
+.titulo-evento{
+
+    flex:1;
+
+    color:var(--text);
+
+    font-size:15px;
+
+    font-weight:500;
+
+    line-height:1.35;
+
+}
+
+/*=====================================================
+CHECKS
+=====================================================*/
+
+.check{
+
+    width:22px;
+
+    height:22px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    color:#B0B3BA;
+
+    transition:all .15s;
+
+    flex-shrink:0;
+
+}
+
+.check:hover{
+
+    color:var(--accent);
+
+    transform:scale(1.08);
+
+}
+
+.check.completo{
+
+    color:var(--green);
+
+}
+
+/*=====================================================
+RESPONSABLE
+=====================================================*/
+
+.responsable{
+
+    font-size:12px;
+
+    color:var(--text2);
+
+    margin-left:6px;
+
+    white-space:nowrap;
+
+}
+
+/*=====================================================
+ACCIONES
+=====================================================*/
+
+.acciones{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-left:auto;
+
+}
+
+.acciones i{
+
+    width:18px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    color:#A1A1AA;
+
+    transition:.15s;
+
+}
+
+.acciones i:hover{
+
+    color:var(--accent);
+
+    transform:scale(1.08);
+
+}
+
+.acciones .eliminar:hover{
+
+    color:var(--red);
+
+}
+
+.acciones .persona:hover{
+
+    color:var(--green);
+
+}
+
+/*=====================================================
+ALERTAS
+=====================================================*/
+
+.alerta{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    border-radius:18px;
+
+    background:#FAFAFB;
+
+    border:1px solid rgba(0,0,0,.05);
+
+    transition:.18s;
+
+}
+
+.alerta:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 6px 18px rgba(0,0,0,.06);
+
+}
+
+.alerta-titulo{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+.alerta-descripcion{
+
+    font-size:14px;
+
+    color:var(--text2);
+
+    line-height:1.45;
+
+}
+
+/*=====================================================
+TOOLBAR
+=====================================================*/
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:14px;
+
+}
+
+/*=====================================================
+NOTAS
+=====================================================*/
+
+#txtNotas{
+
+    width:100%;
+
+    height:100%;
+
+    resize:none;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    font-family:inherit;
+
+}
+
+#txtNotas::placeholder{
+
+    color:#B4B4BA;
+
+}
+
+#estadoNotas{
+
+    color:var(--text2);
+
+    font-size:12px;
+
+}
+
+/*=====================================================
+ESTADOS VACÍOS
+=====================================================*/
+
+.vacio{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100%;
+
+    gap:10px;
+
+    color:var(--text2);
+
+    font-size:14px;
+
+}
+
+.vacio i{
+
+    font-size:30px;
+
+    opacity:.45;
+
+}
+
+/* =====================================================
+MODAL
+===================================================== */
+
+.modal-overlay{
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.35);
+
+    z-index: 9999;
+
+}
+.modal{
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(0,0,0,.35);
+
+    backdrop-filter: blur(6px);
+
+    z-index: 9999;
+
+}
+
+.modal h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#1D1D1F;
+
+    letter-spacing:-0.4px;
+
+    text-align:center;
+
+}
+
+.modal p{
+
+    color:var(--text2);
+
+    line-height:1.55;
+
+    margin-bottom:20px;
+
+}
+
+.modal input,
+
+.modal textarea,
+
+.modal select{
+
+    width:100%;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:16px;
+
+    background:#FAFAFB;
+
+    color:var(--text);
+
+    padding:14px 16px;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    outline:none;
+
+    transition:.18s;
+
+}
+
+.modal textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+
+.modal input:focus,
+
+.modal textarea:focus,
+
+.modal select:focus{
+
+    border-color:var(--accent);
+
+    background:white;
+
+    box-shadow:
+
+        0 0 0 4px rgba(47,107,255,.10);
+
+}
+
+.modal-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:26px;
+
+}
+
+/*=====================================================
+BOTONES
+=====================================================*/
+
+.btn{
+
+    border:none;
+
+    border-radius:16px;
+
+    height:44px;
+
+    padding:0 22px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.18s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn:active{
+
+    transform:scale(.97);
+
+}
+
+.btn-primary{
+
+    background:var(--accent);
+
+    color:white;
+
+}
+
+.btn-primary:hover{
+
+    box-shadow:
+
+        0 10px 24px rgba(47,107,255,.25);
+
+}
+
+.btn-secondary{
+
+    background:#F3F4F7;
+
+    color:var(--text);
+
+}
+
+.btn-danger{
+
+    background:var(--red);
+
+    color:white;
+
+}
+
+/*=====================================================
+SCROLL
+=====================================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#D7D8DD;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#BFC2C8;
+
+}
+
+/*=====================================================
+ANIMACIONES
+=====================================================*/
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes subir{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(12px)
+
+            scale(.98);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateY(0)
+
+            scale(1);
+
+    }
+
+}
+
+/*=====================================================
+BOOTSTRAP ICONS
+=====================================================*/
+
+.bi{
+
+    font-size:17px;
+
+    vertical-align:middle;
+
+}
+
+.bi-trash3{
+
+    color:#9B9CA3;
+
+}
+
+.bi-trash3:hover{
+
+    color:var(--red);
+
+}
+
+.bi-person{
+
+    color:#9B9CA3;
+
+}
+
+.bi-person:hover{
+
+    color:var(--green);
+
+}
+
+.bi-plus-lg{
+
+    color:var(--accent);
+
+}
+
+.bi-arrow-clockwise{
+
+    color:var(--accent);
+
+}
+
+.bi-check-circle-fill{
+
+    color:var(--green);
+
+}
+
+.bi-circle{
+
+    color:#C7C8CF;
+
+}
+
+.bi-gear{
+
+    color:#7C7D84;
+
+}
+
+.bi-cart3{
+
+    color:var(--green);
+
+}
+
+.bi-calendar-event{
+
+    color:var(--accent);
+
+}
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width:1100px){
+
+    main{
+
+        grid-template-columns:1fr 1fr;
+
+        grid-template-rows:auto;
+
+    }
+
+    .agenda{
+
+        grid-column:1 / 3;
+        grid-row:auto;
+
+    }
+
+    .tareas,
+    .mercado,
+    .alertas,
+    .notas{
+
+        grid-column:auto;
+        grid-row:auto;
+
+    }
+
+}
+
+@media (max-width:760px){
+
+    body{
+
+        padding:12px;
+
+    }
+
+    header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+    .header-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+        flex-wrap:wrap;
+
+    }
+
+    main{
+
+        display:flex;
+
+        flex-direction:column;
+
+    }
+
+    section{
+
+        min-height:320px;
+
+    }
+
+    .card-body{
+
+        overflow-y:visible;
+
+    }
+
+    .btn-header{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+    .btn-card{
+
+        width:36px;
+
+        height:36px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .logo{
+
+        font-size:1.4rem;
+
+    }
+
+    .fecha,
+    .hora{
+
+        font-size:.95rem;
+
+    }
+
+    .card-header h2{
+
+        font-size:1.1rem;
+
+    }
+
+    .modal-contenido{
+
+    width: min(94vw, 420px);
+
+    background: #FFFFFF;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.18);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+}
+
+/*=====================================================
+USUARIO
+=====================================================*/
+
+.usuario-info{
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:3px;
+
+}
+
+#usuarioNombre{
+
+    font-weight:bold;
+
+}
+
+#estadoSync{
+
+    font-size:12px;
+
+    opacity:.80;
+
+}
+
+/*=====================================================
+SINCRONIZACIÓN
+=====================================================*/
+
+.btn-sync{
+
+    animation:girar .8s linear infinite;
+
+    pointer-events:none;
+
+    opacity:.65;
+
+}
+
+@keyframes girar{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*=====================================================
+NOTAS
+=====================================================*/
+
+#txtNotas{
+
+    width:100%;
+
+    height:220px;
+
+    resize:none;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    color:inherit;
+
+}
+
+#estadoNotas{
+
+    font-size:12px;
+
+    color:#777;
+
+    min-width:70px;
+
+    text-align:right;
+
+}
+
+/*=====================================================
+MODO CELULAR
+=====================================================*/
+
+@media (max-width:900px){
+
+    header{
+
+        flex-wrap:wrap;
+
+        gap:10px;
+
+        padding:12px;
+
+    }
+
+    .header-right{
+
+        width:100%;
+
+        justify-content:flex-end;
+
+    }
+
+    main{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:15px;
+
+        padding:15px;
+
+    }
+
+    .card{
+
+        width:100%;
+
+    }
+
+    .card-body{
+
+        max-height:none;
+
+    }
+
+    #txtNotas{
+
+        height:300px;
+
+    }
+
+}
+
+/*=====================================================
+CONFIGURACIÓN
+=====================================================*/
+
+.menu-config{
+
+    position:absolute;
+
+    top:65px;
+
+    right:15px;
+
+    width:220px;
+
+    background:white;
+
+    border-radius:10px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+    z-index:999;
+
+}
+
+.menu-config button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    background:none;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.menu-config button:hover{
+
+    background:#f5f5f5;
+
+}
+
+.oculto{
+
+    display:none !important;
+
+}
+
+/*=====================================================
+TEMA OSCURO
+=====================================================*/
+
+body.dark{
+
+    background:#1d1d1d;
+
+    color:white;
+
+}
+
+body.dark .card{
+
+    background:#2c2c2c;
+
+}
+
+body.dark header{
+
+    background:#2c2c2c;
+    
+
+}
+
+body.dark textarea{
+
+    color:white;
+
+}
+
+body.dark .menu-config{
+
+    background:#2c2c2c;
+
+}
+
+body.dark .menu-config button{
+
+    color:white;
+
+}
+
+body.dark .menu-config button:hover{
+
+    background:#3a3a3a;
+
+}
+
+body.dark .logo{
+    color:white;
+}
+
+body.dark .hora{
+    color:white;
+}
+
+body.dark h2{
+    color:white;
+}
+
+
+
+
+/*=====================================================
+MÓVIL
+=====================================================*/
+
+@media (max-width:900px){
+
+    header{
+
+        flex-wrap:wrap;
+
+        gap:10px;
+
+        padding:12px;
+
+    }
+
+    .header-right{
+
+        margin-left:auto;
+
+    }
+
+    main{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:15px;
+
+        padding:15px;
+
+    }
+
+    .card{
+
+        width:100%;
+
+    }
+
+    .card-header h2{
+
+        font-size:18px;
+
+    }
+
+    .btn-card{
+
+        width:38px;
+
+        height:38px;
+
+    }
+
+    #txtNotas{
+
+        height:280px;
+
+    }
+
+}
+
+/* ===== BOTONES DEL MODAL ===== */
+
+.modal-botones{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:8px;
+
+}
+
+#btnAceptar{
+
+    height:42px;
+
+    min-width:110px;
+
+    padding:0 22px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2F6BFF;
+
+    color:#FFF;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+}
+
+#btnAceptar:hover{
+
+    background:#2458E6;
+
+}
+
+#btnCancelar{
+
+    height:42px;
+
+    min-width:110px;
+
+    padding:0 22px;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:14px;
+
+    background:#F3F4F6;
+
+    color:#1D1D1F;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+}
+
+#btnCancelar:hover{
+
+    background:#E9EAED;
+
+}
