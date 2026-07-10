@@ -26,6 +26,7 @@ const CONFIG = {
     SCOPES: [
         "User.Read",
         "Calendars.Read",
+        "Calendars.Read.Shared",
         "Tasks.ReadWrite",
         "Group.Read.All",
         "Files.ReadWrite"
